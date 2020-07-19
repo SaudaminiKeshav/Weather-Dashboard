@@ -7,6 +7,10 @@ var cityListTable = $("<table>");
 cityListTable.attr("class", "table table-bordered table-light");
 
 var tbody = $("<tbody>");
+var image = "";
+
+var cityName = $("<h4>");
+cityName.attr("class", "white-text city-name");
 
 
 $(document).ready(function() {
@@ -85,18 +89,19 @@ function getCityWeatherDataFromAPI(searchedCity) {
         // After the data comes back from the API
         .then(function(response) {
             // Storing an array of results in the results variable
-
+            getImageUrl(response);
             addSearchedCityToTable(response.name);
             displaySearchCityWeatherData(response);
 
-            console.log(response.name);
+            console.log(response);
+
         });
 }
 
 
 function displayCityWeatherData() {
     var currentWeather = $("<div>");
-    currentWeather.attr("class", "current-weather");
+    currentWeather.attr("id", "current-weather");
 
     $("body").append(currentWeather);
 }
@@ -120,12 +125,42 @@ function addSearchedCityToTable(searchedCity) {
 }
 
 function displaySearchCityWeatherData(response) {
-    var cityName = $("<h4>");
-    cityName.attr("class", "white-text city-name");
+
     cityName.text(response.name);
 
     var currentDate = moment().format('MMMM Do YYYY');
 
     cityName.append("  (" + currentDate + ")");
-    $(".current-weather").append(cityName);
+    $("#current-weather").append(cityName);
+    getImageUrl(response);
+}
+
+function getImageUrl(response) {
+    if (response.weather[0].description.toString().includes("clear") == true) {
+
+        removeOldCLassName();
+        $("#current-weather").addClass("clear-sky");
+    }
+    if (response.weather[0].description.toString().includes("mist") == true) {
+
+        removeOldCLassName();
+        $("#current-weather").addClass("mist");
+    }
+    if (response.weather[0].description.toString().includes("clouds") == true) {
+
+        removeOldCLassName();
+        $("#current-weather").addClass("broken-clouds");
+    }
+    if (response.weather[0].description.toString().includes("rain") == true) {
+
+        removeOldCLassName();
+        $("#current-weather").addClass("moderate-rain");
+    }
+}
+
+function removeOldCLassName() {
+    var className = $("#current-weather").attr('class');
+    console.log(className);
+    $("#current-weather").removeClass(className);
+    console.log($("#current-weather").attr('class'));
 }

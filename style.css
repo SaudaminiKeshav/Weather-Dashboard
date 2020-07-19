@@ -32,11 +32,31 @@
         display: inline-block;
     }
     
-    .current-weather {
+    #current-weather {
         float: right;
         width: 75%;
-        height: 300px;
+        height: 500px;
         border: 1px solid rgb(199, 197, 197);
+    }
+    
+    .clear-sky {
+        background-size: auto;
+        background: url('Assets\\photo-1531147646552-1eec68116469.jpg');
+    }
+    
+    .mist {
+        background-size: auto;
+        background: url('Assets\\mist.png');
+    }
+    
+    .broken-clouds {
+        background-size: auto;
+        background: url('Assets\\broken-clouds.png');
+    }
+    
+    .moderate-rain {
+        background-size: auto;
+        background: url('Assets\\moderate-rain.jpg');
     }
     
     .table {
@@ -76,10 +96,10 @@
             background-color: transparent;
             display: inline-flex;
         }
-        .current-weather {
+        #current-weather {
             float: right;
             width: 100%;
-            height: 300px;
+            height: 500px;
             border: 1px solid rgb(199, 197, 197);
         }
         .table {
@@ -96,4 +116,10 @@
     
     .city-name {
         padding: 10px;
+        color: black;
+    }
+    
+    .weather-image {
+        width: 20px;
+        height: 20px;
     }
