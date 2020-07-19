@@ -87,6 +87,8 @@ function getCityWeatherDataFromAPI(searchedCity) {
             // Storing an array of results in the results variable
 
             addSearchedCityToTable(response.name);
+            displaySearchCityWeatherData(response);
+
             console.log(response.name);
         });
 }
@@ -115,4 +117,15 @@ function addSearchedCityToTable(searchedCity) {
     tbody.append(row);
     cityListTable.append(tbody);
     $("body").append(cityListTable);
+}
+
+function displaySearchCityWeatherData(response) {
+    var cityName = $("<h4>");
+    cityName.attr("class", "white-text city-name");
+    cityName.text(response.name);
+
+    var currentDate = moment().format('MMMM Do YYYY');
+
+    cityName.append("  (" + currentDate + ")");
+    $(".current-weather").append(cityName);
 }
