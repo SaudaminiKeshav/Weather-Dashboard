@@ -29,6 +29,7 @@ body {
 
 .form-control {
     background-color: transparent;
+    display: inline-block;
 }
 
 .current-weather {
@@ -50,6 +51,11 @@ td {
     color: white;
 }
 
+.error-text {
+    color: white;
+    padding: 10px;
+}
+
 
 /* Mobile devices  */
 
@@ -67,6 +73,10 @@ td {
         width: 100%;
         padding: 5px;
         margin-bottom: 5px;
+    }
+    .form-control {
+        background-color: transparent;
+        display: inline-flex;
     }
     .current-weather {
         float: right;
