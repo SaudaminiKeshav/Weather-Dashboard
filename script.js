@@ -1,12 +1,10 @@
-
-
-
-$(document).ready(function () {
+$(document).ready(function() {
 
     createCitySearchElement();
     getWeatherDataForCityFromAPI();
-
     displayCityWeatherData();
+    displayCityListInBorderTable();
+
 
 });
 
@@ -21,12 +19,12 @@ function getWeatherDataForCityFromAPI() {
 
     // Performing our AJAX GET request
     $.ajax({
-        url: queryURL,
-        method: "GET"
-    })
+            url: queryURL,
+            method: "GET"
+        })
         // After the data comes back from the API
         // After the data comes back from the API
-        .then(function (response) {
+        .then(function(response) {
             // Storing an array of results in the results variable
             var results = response.data;
             console.log(response);
@@ -49,7 +47,7 @@ function createCitySearchElement() {
     inputSearch.attr("aria-label", "Search");
 
     var searchButton = $("<button>");
-    searchButton.attr("class", "btn btn-outline-success my-2 my-sm-0");
+    searchButton.attr("class", "btn btn-outline-light my-2 my-sm-0");
     searchButton.text("Search");
 
     form.append(searchLabel);
@@ -59,10 +57,27 @@ function createCitySearchElement() {
     $("body").append(form);
 }
 
-function displayCityWeatherData(){
+function displayCityWeatherData() {
     var currentWeather = $("<div>");
     currentWeather.attr("class", "current-weather");
 
     $("body").append(currentWeather);
+}
 
+function displayCityListInBorderTable() {
+    var cityListTable = $("<table>");
+    cityListTable.attr("class", "table table-bordered table-light");
+
+    var tbody = $("<tbody>");
+
+    var row = $("<tr>");
+
+    var cityNameEntry = $("<td>");
+    cityNameEntry.attr("colspan", "2");
+    cityNameEntry.text("temp text");
+
+    row.append(cityNameEntry);
+    tbody.append(row);
+    cityListTable.append(tbody);
+    $("body").append(cityListTable);
 }

@@ -1,7 +1,7 @@
 .page-title {
     text-align: center;
     background-color: transparent;
-    color: black;
+    color: white;
     border-radius: 0;
     border-bottom: 5px solid black;
     padding: 20px;
@@ -12,11 +12,13 @@ body {
     display: block;
     margin-left: 20px;
     margin-right: 20px;
+    background-color: #222629;
 }
 
 .search-label {
     padding: 5px;
     display: flex;
+    color: white;
 }
 
 .form-inline {
@@ -25,12 +27,27 @@ body {
     padding: 5px;
 }
 
+.form-control {
+    background-color: transparent;
+}
+
 .current-weather {
     float: right;
     width: 75%;
     height: 300px;
-    display: inline-block;
     border: 1px solid rgb(199, 197, 197);
+}
+
+.table {
+    width: 20%;
+    display: flex;
+    margin-top: 20px;
+    background-color: transparent;
+}
+
+td {
+    width: 20%;
+    color: white;
 }
 
 
@@ -40,7 +57,7 @@ body {
     .page-title {
         text-align: center;
         background-color: transparent;
-        color: black;
+        color: white;
         border-radius: 0;
         border-bottom: 5px solid black;
         padding: 10px;
