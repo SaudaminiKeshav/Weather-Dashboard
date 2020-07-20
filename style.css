@@ -41,7 +41,7 @@
     
     .clear-sky {
         background-size: auto;
-        background: url('Assets\\photo-1531147646552-1eec68116469.jpg');
+        background: url('Assets\\clear-blue-sky.jpg');
     }
     
     .mist {
@@ -51,7 +51,7 @@
     
     .broken-clouds {
         background-size: auto;
-        background: url('Assets\\broken-clouds.png');
+        background: url('Assets\\cloudy.jpg');
     }
     
     .moderate-rain {

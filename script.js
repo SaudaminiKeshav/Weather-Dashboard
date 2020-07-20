@@ -12,6 +12,7 @@ var image = "";
 var cityName = $("<h4>");
 cityName.attr("class", "white-text city-name");
 
+var searchedCityList = [];
 
 $(document).ready(function() {
 
@@ -112,17 +113,31 @@ function displaySearchErrorText() {
 
 function addSearchedCityToTable(searchedCity) {
 
-    var row = $("<tr>");
+    if (searchedCityList.includes(searchedCity) != true) {
+        searchedCityList.push(searchedCity);
 
-    var cityNameEntry = $("<td>");
-    cityNameEntry.attr("colspan", "10");
-    cityNameEntry.text(searchedCity);
+        var row = $("<tr>");
 
-    row.append(cityNameEntry);
-    tbody.append(row);
-    cityListTable.append(tbody);
-    $("body").append(cityListTable);
+        var cityNameEntry = $("<td>");
+        cityNameEntry.attr("colspan", "10");
+        cityNameEntry.attr("id", searchedCity);
+        cityNameEntry.text(searchedCity);
+        cityNameEntry.click(function() {
+            console.log("clicked - " + $(this).attr('id'));
+            getCityWeatherDataFromAPI($(this).attr('id'))
+        })
+
+
+        row.append(cityNameEntry);
+        tbody.append(row);
+        cityListTable.append(tbody);
+        $("body").append(cityListTable);
+    }
+
+    var searchHistory = $(cityNameEntry).find().get($(this));
+    console.log(searchHistory);
 }
+
 
 function displaySearchCityWeatherData(response) {
 
