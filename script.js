@@ -9,21 +9,76 @@ cityListTable.attr("class", "table table-bordered table-light");
 var tbody = $("<tbody>");
 var image = "";
 
-var cityName = $("<h4>");
-cityName.attr("class", "white-text city-name");
+var cityName = $("<h3>");
+cityName.attr("class", "white-text city-name bold_text");
+
+var temperature = $("<h5>");
+temperature.attr("class", "white-text city-name bold_text");
+
+var humidity = $("<h5>");
+humidity.attr("class", "white-text city-name bold_text");
+var wind_speed = $("<h5>");
+wind_speed.attr("class", "white-text city-name bold_text");
+var uv_index = $("<h5>");
+uv_index.attr("class", "white-text city-name bold_text");
 
 var searchedCityList = [];
 var userSearchResultList = [];
 
+
 $(document).ready(function() {
+    if (localStorage.getItem('UserSearchCityList') === null) {
+        // Create search input field and button to make api call and get weather data 
+        createCitySearchElements();
 
-    // Create search input field and button to make api call and get weather data 
-    createCitySearchElements();
-
-    displayCityWeatherData();
+        displayCityWeatherData();
+    } else {
+        displayCityWeatherData();
+        reloadWeatherDataFromLocalStorage();
+    }
 });
 
+// window.onload =
 
+function reloadWeatherDataFromLocalStorage() {
+    createCitySearchElements();
+
+    var savedUserSearchList = JSON.parse(localStorage.getItem('UserSearchCityList'));
+    var length = savedUserSearchList.length;
+    reloadTableContent(savedUserSearchList);
+    reloadDataFromLocalStorage(savedUserSearchList[length - 1]);
+}
+
+function reloadTableContent(savedUserSearchList) {
+    savedUserSearchList.forEach(object => {
+        addSearchedCityToTable(object.key);
+    });
+}
+
+function reloadDataFromLocalStorage(searchedCityData) {
+
+    cityName.text(searchedCityData.key);
+
+    var currentDate = moment().format('MMMM Do YYYY');
+
+    cityName.append("  (" + currentDate + ")");
+    $("#current-weather").append(cityName);
+
+    temperature.text("Temperature: " +
+        searchedCityData.temp);
+    $("#current-weather").append(temperature);
+
+    humidity.text("Humidity: " + searchedCityData.humidity);
+    $("#current-weather").append(humidity);
+
+    wind_speed.text("Wind Speed: " + searchedCityData.wind_speed);
+    $("#current-weather").append(wind_speed);
+
+    // humidity.text(searchedCity.humidity);
+    // $("#current-weather").append(humidity); *********************
+
+    getImageUrlFromLocalStorage(searchedCityData);
+}
 
 function createCitySearchElements() {
 
@@ -93,7 +148,7 @@ function getCityWeatherDataFromAPI(searchedCity) {
             // Storing an array of results in the results variable
 
             addResponseToLocalStorage(response);
-            getImageUrl(response);
+            // getImageUrl(response);
             addSearchedCityToTable(response.name);
             displaySearchCityWeatherData(response);
 
@@ -113,7 +168,7 @@ function addResponseToLocalStorage(response) {
             humidity: response.main.humidity,
             temp: response.main.temp,
             weather: response.weather[0].description,
-            weather: response.weather[0].icon,
+            weather_icon: response.weather[0].icon,
             wind_speed: response.wind.speed
         })
         localStorage.setItem('UserSearchCityList', JSON.stringify(userSearchResultList));
@@ -130,7 +185,7 @@ function addResponseToLocalStorage(response) {
                     humidity: response.main.humidity,
                     temp: response.main.temp,
                     weather: response.weather[0].description,
-                    weather: response.weather[0].icon,
+                    weather_icon: response.weather[0].icon,
                     wind_speed: response.wind.speed
                 })
                 // Create a new array in local storage if doesn't exist 
@@ -150,7 +205,7 @@ function addResponseToLocalStorage(response) {
                 humidity: response.main.humidity,
                 temp: response.main.temp,
                 weather: response.weather[0].description,
-                weather: response.weather[0].icon,
+                weather_icon: response.weather[0].icon,
                 wind_speed: response.wind.speed
             });
             localStorage.setItem('UserSearchCityList', JSON.stringify(userSearchResultList));
@@ -184,7 +239,9 @@ function addSearchedCityToTable(searchedCity) {
         cityNameEntry.text(searchedCity);
         cityNameEntry.click(function() {
             console.log("clicked - " + $(this).attr('id'));
-            getCityWeatherDataFromAPI($(this).attr('id'))
+            var clickedCity = $(this).attr('id');
+            getDataFromLocalStorage(clickedCity);
+            // getCityWeatherDataFromAPI($(this).attr('id'))
         })
 
 
@@ -198,6 +255,42 @@ function addSearchedCityToTable(searchedCity) {
     console.log(searchHistory);
 }
 
+function getDataFromLocalStorage(userSelection) {
+    var savedUserSearchList = JSON.parse(localStorage.getItem('UserSearchCityList'));
+
+    console.log(savedUserSearchList);
+
+    var searchedCity = savedUserSearchList.find(item => item.key === userSelection);
+    console.log(searchedCity);
+
+    displaySearchCityWeatherDataFromLocalStorage(searchedCity);
+}
+
+function displaySearchCityWeatherDataFromLocalStorage(searchedCity) {
+
+    cityName.text(searchedCity.key);
+
+    var currentDate = moment().format('MMMM Do YYYY');
+
+    cityName.append("  (" + currentDate + ")");
+    $("#current-weather").append(cityName);
+
+    temperature.text("Temperature: " +
+        searchedCity.temp);
+    $("#current-weather").append(temperature);
+
+    humidity.text("Humidity: " + searchedCity.humidity);
+    $("#current-weather").append(humidity);
+
+    wind_speed.text("Wind Speed: " + searchedCity.wind_speed);
+    $("#current-weather").append(wind_speed);
+
+    // humidity.text(searchedCity.humidity);
+    // $("#current-weather").append(humidity); *********************
+
+    getImageUrlFromLocalStorage(searchedCity);
+}
+
 
 function displaySearchCityWeatherData(response) {
 
@@ -207,7 +300,60 @@ function displaySearchCityWeatherData(response) {
 
     cityName.append("  (" + currentDate + ")");
     $("#current-weather").append(cityName);
+
+    temperature.text("Temperature: " +
+        response.main.temp);
+    $("#current-weather").append(temperature);
+
+    humidity.text("Humidity: " + response.main.humidity);
+    $("#current-weather").append(humidity);
+
+    wind_speed.text("Wind Speed: " + response.wind.speed);
+    $("#current-weather").append(wind_speed);
+
+    // humidity.text(searchedCity.humidity);
+    // $("#current-weather").append(humidity); *********************
+
     getImageUrl(response);
+}
+
+
+function getImageUrlFromLocalStorage(searchedCity) {
+    if (searchedCity.weather.toString().includes("clear") == true) {
+
+        removeOldCLassName();
+        $("#current-weather").addClass("clear-sky");
+    }
+    if (searchedCity.weather.toString().includes("mist") == true) {
+
+        removeOldCLassName();
+        $("#current-weather").addClass("mist");
+    }
+    if (searchedCity.weather.toString().includes("scattered") == true) {
+
+        removeOldCLassName();
+        $("#current-weather").addClass("scattered-clouds");
+    }
+    if (searchedCity.weather.toString().includes("clouds") == true) {
+
+        removeOldCLassName();
+        $("#current-weather").addClass("clouds");
+    }
+    if (searchedCity.weather.toString().includes("rain") == true && searchedCity.weather.toString().includes("moderate") == true) {
+
+        removeOldCLassName();
+        $("#current-weather").addClass("moderate-rain");
+    }
+    if (searchedCity.weather.toString().includes("rain") == true && searchedCity.weather.toString().includes("drizzle") == true) {
+
+        removeOldCLassName();
+        $("#current-weather").addClass("drizzle-rain");
+    }
+    if (searchedCity.weather.toString().includes("rain") == true && searchedCity.weather.toString().includes("thunder") == true) {
+
+        removeOldCLassName();
+        $("#current-weather").addClass("thunder-rain");
+    }
 }
 
 function getImageUrl(response) {
@@ -221,21 +367,35 @@ function getImageUrl(response) {
         removeOldCLassName();
         $("#current-weather").addClass("mist");
     }
+    if (response.weather[0].description.toString().includes("scattered") == true) {
+
+        removeOldCLassName();
+        $("#current-weather").addClass("scattered-clouds");
+    }
     if (response.weather[0].description.toString().includes("clouds") == true) {
 
         removeOldCLassName();
-        $("#current-weather").addClass("broken-clouds");
+        $("#current-weather").addClass("clouds");
     }
-    if (response.weather[0].description.toString().includes("rain") == true) {
+    if (response.weather[0].description.toString().includes("rain") == true && response.weather[0].description.toString().includes("moderate") == true) {
 
         removeOldCLassName();
         $("#current-weather").addClass("moderate-rain");
+    }
+    if (response.weather[0].description.toString().includes("rain") == true && response.weather[0].description.toString().includes("drizzle") == true) {
+
+        removeOldCLassName();
+        $("#current-weather").addClass("drizzle-rain");
+    }
+    if (response.weather[0].description.toString().includes("rain") == true && response.weather[0].description.toString().includes("thunder") == true) {
+
+        removeOldCLassName();
+        $("#current-weather").addClass("thunder-rain");
     }
 }
 
 function removeOldCLassName() {
     var className = $("#current-weather").attr('class');
-    console.log(className);
+
     $("#current-weather").removeClass(className);
-    console.log($("#current-weather").attr('class'));
 }

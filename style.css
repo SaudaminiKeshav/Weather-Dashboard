@@ -40,23 +40,73 @@
     }
     
     .clear-sky {
-        background-size: auto;
-        background: url('Assets\\clear-blue-sky.jpg');
+        background-size: cover;
+        background: url('Assets\\clear_sky_gif.gif')no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        object-fit: cover;
     }
     
     .mist {
-        background-size: auto;
-        background: url('Assets\\mist.png');
+        background-size: cover;
+        background: url('Assets\\fog_mist_gif.gif')no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        object-fit: cover;
     }
     
-    .broken-clouds {
-        background-size: auto;
-        background: url('Assets\\cloudy.jpg');
+    .scattered-clouds {
+        background-size: cover;
+        background: url('Assets\\scattered_cloud.gif')no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        object-fit: cover;
+    }
+    
+    .clouds {
+        background-size: cover;
+        background: url('Assets\\clouds_gif.gif')no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        object-fit: cover;
     }
     
     .moderate-rain {
-        background-size: auto;
-        background: url('Assets\\moderate-rain.jpg');
+        background-size: contain;
+        background: url('Assets\\moderate_rain_gif.gif')no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        object-fit: cover;
+    }
+    
+    .drizzle-rain {
+        background-size: cover;
+        background: url('Assets\\rain_gif.gif')no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        object-fit: cover;
+    }
+    
+    .thunder-rain {
+        background-size: cover;
+        background: url('Assets\\thunder_gif.gif')no-repeat center center fixed;
+        -webkit-background-size: cover;
+        -moz-background-size: cover;
+        -o-background-size: cover;
+        background-size: cover;
+        object-fit: cover;
     }
     
     .table {
@@ -122,4 +172,8 @@
     .weather-image {
         width: 20px;
         height: 20px;
+    }
+    
+    .bold_text {
+        font-weight: bold;
     }
