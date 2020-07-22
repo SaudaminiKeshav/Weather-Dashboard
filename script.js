@@ -10,17 +10,17 @@ var tbody = $("<tbody>");
 var image = "";
 
 var cityName = $("<h3>");
-cityName.attr("class", "white-text city-name bold_text");
+cityName.attr("class", "white-text city-name bold_text outlined-text");
 
 var temperature = $("<h5>");
-temperature.attr("class", "white-text city-name bold_text");
+temperature.attr("class", "white-text city-name bold_text outlined-text");
 
 var humidity = $("<h5>");
-humidity.attr("class", "white-text city-name bold_text");
+humidity.attr("class", "white-text city-name bold_text outlined-text");
 var wind_speed = $("<h5>");
-wind_speed.attr("class", "white-text city-name bold_text");
+wind_speed.attr("class", "white-text city-name bold_text outlined-text");
 var uv_index = $("<h5>");
-uv_index.attr("class", "white-text city-name bold_text");
+uv_index.attr("class", "white-text city-name bold_text outlined-text");
 
 var searchedCityList = [];
 var userSearchResultList = [];
