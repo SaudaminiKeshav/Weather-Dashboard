@@ -13,6 +13,7 @@ var cityName = $("<h4>");
 cityName.attr("class", "white-text city-name");
 
 var searchedCityList = [];
+var userSearchResultList = [];
 
 $(document).ready(function() {
 
@@ -90,6 +91,8 @@ function getCityWeatherDataFromAPI(searchedCity) {
         // After the data comes back from the API
         .then(function(response) {
             // Storing an array of results in the results variable
+
+            addResponseToLocalStorage(response);
             getImageUrl(response);
             addSearchedCityToTable(response.name);
             displaySearchCityWeatherData(response);
@@ -99,6 +102,63 @@ function getCityWeatherDataFromAPI(searchedCity) {
         });
 }
 
+function addResponseToLocalStorage(response) {
+    // for (var i = 0; i < userSearchResultList.length; i++) {
+    var UserSearchCityList = [];
+
+    if (localStorage.getItem('UserSearchCityList') === null) {
+        userSearchResultList.push({
+            key: response.name,
+            feels_like: response.main.feels_like,
+            humidity: response.main.humidity,
+            temp: response.main.temp,
+            weather: response.weather[0].description,
+            weather: response.weather[0].icon,
+            wind_speed: response.wind.speed
+        })
+        localStorage.setItem('UserSearchCityList', JSON.stringify(userSearchResultList));
+
+    } else {
+        // Else fetch the existing array from local storage 
+        UserSearchCityList = JSON.parse(localStorage.getItem('UserSearchCityList'));
+
+        if ((UserSearchCityList.length == 0 && userSearchResultList.length == 0)) {
+            // Add content to taskArray and set the item to local storage 
+            userSearchResultList.push({
+                    key: response.name,
+                    feels_like: response.main.feels_like,
+                    humidity: response.main.humidity,
+                    temp: response.main.temp,
+                    weather: response.weather[0].description,
+                    weather: response.weather[0].icon,
+                    wind_speed: response.wind.speed
+                })
+                // Create a new array in local storage if doesn't exist 
+            localStorage.setItem('UserSearchCityList', JSON.stringify(userSearchResultList));
+        }
+
+        // If the array existing and is empty, push an object onto the array 
+        else if (UserSearchCityList.length != 0 && userSearchResultList.length != 0) {
+            for (var i = 0; i < userSearchResultList.length; i++) {
+                if (userSearchResultList[i].key == response.name) {
+                    userSearchResultList.splice(i, 1);
+                }
+            }
+            userSearchResultList.push({
+                key: response.name,
+                feels_like: response.main.feels_like,
+                humidity: response.main.humidity,
+                temp: response.main.temp,
+                weather: response.weather[0].description,
+                weather: response.weather[0].icon,
+                wind_speed: response.wind.speed
+            });
+            localStorage.setItem('UserSearchCityList', JSON.stringify(userSearchResultList));
+            console.log(UserSearchCityList);
+        }
+
+    }
+}
 
 function displayCityWeatherData() {
     var currentWeather = $("<div>");
