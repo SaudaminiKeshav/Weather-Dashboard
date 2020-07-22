@@ -90,7 +90,7 @@ function createCitySearchElements() {
     form.attr("class", "form-inline");
 
     var inputSearch = $("<INPUT>");
-    inputSearch.attr("class", "form-control mr-sm-2");
+    inputSearch.attr("class", "form-control mr-sm-1");
     inputSearch.attr("type", "text");
     inputSearch.attr("id", "search-input");
     inputSearch.attr("onclick", "searchClick()");
@@ -104,9 +104,17 @@ function createCitySearchElements() {
     searchButton.attr("value", "Search");
     searchButton.text("Search");
 
+    var clearButton = $("<button>");
+    clearButton.attr("class", "btn btn-outline-light my-1 my-sm-0");
+    clearButton.attr("type", "button");
+    clearButton.attr("onclick", "clearData()");
+    clearButton.attr("value", "Clear");
+    clearButton.text("Clear");
+
     form.append(searchLabel);
     form.append(inputSearch);
     form.append(searchButton);
+    form.append(clearButton);
     form.append(errorText);
 
     $("body").append(form);
@@ -122,6 +130,15 @@ function searchCity() {
 
     getCityWeatherDataFromAPI(userInput);
     $("#search-input").val("");
+}
+
+function clearData() {
+    if (localStorage.getItem('UserSearchCityList') != null) {
+        // Else fetch the existing array from local storage 
+        localStorage.removeItem("UserSearchCityList");
+
+        location.reload();
+    }
 }
 
 function getCityWeatherDataFromAPI(searchedCity) {

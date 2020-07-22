@@ -34,7 +34,7 @@
     
     #current-weather {
         float: right;
-        width: 75%;
+        width: 73%;
         height: 500px;
         border: 1px solid rgb(199, 197, 197);
     }
@@ -177,3 +177,24 @@
     .bold_text {
         font-weight: bold;
     }
+    /*     
+    if (localStorage.getItem('WorkDayNote') !=null) {
+        // Else fetch the existing array from local storage 
+        WorkDayNote=JSON.parse(localStorage.getItem('WorkDayNote'));
+        // If the array existing and is empty, push an object onto the array 
+        if (WorkDayNote.length !=0 && taskArray.length !=0) {
+            for (var i=0;
+            i < taskArray.length;
+            i++) {
+                if (taskArray[i].key==time) {
+                    taskArray.splice(i,
+                    1);
+                }
+            }
+            localStorage.setItem('WorkDayNote',
+            JSON.stringify(taskArray));
+            console.log(WorkDayNote);
+        }
+        localStorage.setItem('WorkDayNote',
+        JSON.stringify(taskArray));
+    } */
