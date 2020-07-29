@@ -42,7 +42,9 @@ You are required to submit the following for review:
 
 ## Click on the below link to get to the Weather Dashboard web page
 
-# https://saudaminikeshav.github.io/Weather-Dashboard/
+https://saudaminikeshav.github.io/Weather-Dashboard/
+
+--------------------------------------------------------------------------------------------------------------------------------------------------------------------------------
 
 ## Below images shows a responsive webpage displayed on a desktop and mobile device.
 
