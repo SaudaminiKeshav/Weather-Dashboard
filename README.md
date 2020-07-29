@@ -44,7 +44,7 @@ You are required to submit the following for review:
 
 ### Web version
 
-<img src="Assets/dashboard-1.PNG" width="400">
+<img src="Assets/dashboard-1.PNG" width="600">
 
 
 ### Mobile version
