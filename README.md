@@ -50,7 +50,7 @@ https://saudaminikeshav.github.io/Weather-Dashboard/
 
 ### Web version
 
-<img src="Assets/dashboard-1.PNG" width="800">
+<img src="Assets/dashboard-1.PNG" height="600">
 
 
 ### Mobile version
