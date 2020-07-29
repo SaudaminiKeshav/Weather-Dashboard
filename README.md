@@ -40,6 +40,10 @@ You are required to submit the following for review:
 
 * The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
 
+## Click on the below link to get to the Weather Dashboard web page
+
+# https://saudaminikeshav.github.io/Weather-Dashboard/
+
 ## Below images shows a responsive webpage displayed on a desktop and mobile device.
 
 ### Web version
