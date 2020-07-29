@@ -32,10 +32,6 @@ WHEN I open the weather dashboard
 THEN I am presented with the last searched city forecast
 ```
 
-The following image demonstrates the application functionality:
-
-![weather dashboard demo](./Assets/06-server-side-apis-homework-demo.png)
-
 ## Review
 
 You are required to submit the following for review:
@@ -43,6 +39,11 @@ You are required to submit the following for review:
 * The URL of the deployed application.
 
 * The URL of the GitHub repository. Give the repository a unique name and include a README describing the project.
+
+## Below images shows a responsive webpage displayed on a desktop and mobile device.
+
+![weather dashboard demo](.Assets/dashboard-1.PNG)
+![weather dashboard demo](.Assets/dashboard-2.PNG)
 
 - - -
 © 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
