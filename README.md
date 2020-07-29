@@ -42,8 +42,15 @@ You are required to submit the following for review:
 
 ## Below images shows a responsive webpage displayed on a desktop and mobile device.
 
-![weather dashboard demo](.Assets/dashboard-1.PNG)
-![weather dashboard demo](.Assets/dashboard-2.PNG)
+### Web version
+
+<img src="Assets/dashboard-1.PNG" width="400">
+
+
+### Mobile version
+
+<img src="Assets/dashboard-2.PNG" width="400">
+
 
 - - -
 © 2019 Trilogy Education Services, a 2U, Inc. brand. All Rights Reserved.
