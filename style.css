@@ -150,6 +150,10 @@
         color: white;
     }
     
+    .uv {
+        width: 30%;
+    }
+    
     .error-text {
         color: white;
         padding: 10px;
@@ -202,10 +206,17 @@
             border-color: black;
             border-width: 3px;
         }
+        .forcast-details {
+            margin-left: 5px;
+            padding: 5px;
+            height: 5px;
+        }
+        .forcast-icon{
+           
+        }
         .table {
-            width: 75%;
-            display: inline-flex;
-            margin-top: 20px;
+            width: 50%;
+            display: flex;
             background-color: transparent;
         }
     }
@@ -235,11 +246,10 @@
             align-items: flex-start;
         }
         .forcast-details {
-            align-items: baseline;
             margin-left: 5px;
             padding: 5px;
-            height: 10px;
-            justify-content: space-around;
+            display: inline-flex;
+            height: 5px;
         }
     }
     
